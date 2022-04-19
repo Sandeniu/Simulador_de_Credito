@@ -101,8 +101,8 @@ let cuotaMensualStr;
 let UFcuotaMensual;
 let UFcuotaMensualStr;
 
-let tramoDesgravamen;
-let tramoCesantia;
+let tramoDesgravamen = "";
+let tramoCesantia = "";
 let primaDesgravamenStr;
 let UFprimaDesgravamen;
 let UFprimaDesgravamenStr;
@@ -865,7 +865,7 @@ function conversionValores() {
   CAEStr = CAEStr.toFixed(1);
   CAEStr = `${CAEStr} %`;
 
-  tasaCreditoStr = tasaCredito * 100;
+  tasaCreditoStr = tasaCredito;
   tasaCreditoStr = tasaCreditoStr.toFixed(1);
   tasaCreditoStr = `${tasaCreditoStr} %`;
 
@@ -883,13 +883,13 @@ function conversionValores() {
   UFcuotaMensualStr = UFcuotaMensual.toFixed(1);
   UFcuotaMensualStr = new Intl.NumberFormat({ style: 'decimal' }).format(UFcuotaMensualStr);
 
-  UFprimaDesgravamenStr = UFprimaDesgravamen.toFixed(1);
+  UFprimaDesgravamenStr = UFprimaDesgravamen.toFixed(4);
   UFprimaDesgravamenStr = new Intl.NumberFormat({ style: 'decimal' }).format(UFprimaDesgravamenStr);
 
-  UFprimaCesantiaStr = UFprimaCesantia.toFixed(1);
+  UFprimaCesantiaStr = UFprimaCesantia.toFixed(4);
   UFprimaCesantiaStr = new Intl.NumberFormat({ style: 'decimal' }).format(UFprimaCesantiaStr);
 
-  UFtotalSegurosStr = UFtotalSeguros.toFixed(1);
+  UFtotalSegurosStr = UFtotalSeguros.toFixed(4);
   UFtotalSegurosStr = new Intl.NumberFormat({ style: 'decimal' }).format(UFtotalSegurosStr);
 }
 

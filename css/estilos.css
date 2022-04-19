@@ -21,7 +21,7 @@
                              y alto total de un elemento*/
 }
 
-/*!ELEMENTOS GENERALES ****************************************************************/
+/*!ELEMENTOS GENERALES **********************************************************************/
 
 .hr1 {
   /*todo: height de hr no se puede modificar con css pero sí directamente como atributo html*/
@@ -72,7 +72,7 @@ p{
   margin: 0.5rem 0;
 }
 
-/*! FORMULARIO ****************************************************************/
+/*! FORMULARIO ******************************************************************************/
 
 .label{
   font-size: .9rem;
@@ -159,7 +159,7 @@ input[type=checkbox] {
   100% { transform: scale(1); }
 }
 
-/*!ELEMENTOS PERSONALIZADOS ****************************************************/
+/*!ELEMENTOS PERSONALIZADOS ******************************************************************/
 
 
 .ind__hea{
@@ -176,7 +176,7 @@ input[type=checkbox] {
 
 .ind__mai{
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
   margin: 1.5rem 0; /*márgenes laterales (default BS), añaden scroll horizontal */
   /*border: solid 1px rgb(150, 150, 150); */
 }
@@ -218,7 +218,7 @@ input[type=checkbox] {
 
 }
 
-/*TODO: ROW: ESTILOS COMUNES --------------------------------------- */
+/*TODO: ROW: ESTILOS COMUNES -------------------------------------------------------------- */
 
 .ind__sec1__divCon__for{
     display: flex;
@@ -296,7 +296,7 @@ input[type=checkbox] {
 
 
 
-/*TODO: ROW [2] DATOS DE CRÉDITO ---------------------------------------------------- */
+/*TODO: ROW [2] DATOS DE CRÉDITO ---------------------------------------------------------- */
 
 
 .__divContent__divElementForm__divSpa { /*formulario > div > fieldset > div */
@@ -311,7 +311,7 @@ input[type=checkbox] {
   color: #A1A1A1;
 }
 
-/*TODO: ROW [3] SEGUROS OPCIONALES ---------------------------------------------------- */
+/*TODO: ROW [3] SEGUROS OPCIONALES -------------------------------------------------------- */
 
 .__divContent__divElementForm__p{  
   font-size: 0.85rem;
@@ -326,7 +326,7 @@ input[type=checkbox] {
 }
 
 
-/*TODO: ROW [4] BOTONERAS DE CÁLCULO ---------------------------------------------------- */
+/*TODO: ROW [4] BOTONERAS DE CÁLCULO ------------------------------------------------------ */
 
 
 .ind__sec1__for__divRowBot__fie{
@@ -336,7 +336,7 @@ input[type=checkbox] {
 }
 
 
-/*TODO: ROW [5] RESULTADO  ---------------------------------------------------- */
+/*TODO: ROW [5] RESULTADO  ---------------------------------------------------------------- */
 .ind__sec1__for__divRowRes{
   flex-direction: row;
   border-radius: 20px;
@@ -350,12 +350,74 @@ input[type=checkbox] {
   width: 500px;
 }*/
 
-/*! SEPARADOR HORIZONTAL  ****************************************************/
+/*! SECTION SEPARADOR HORIZONTAL  ***********************************************************/
 .ind__sec2{
   padding: 0;
 }
 
-/*! CONDICIONES GENERALES  ****************************************************/
+/*! SECTION TABLA DE RESULTADOS (SECTION 0) - */
+
+.ind__sec0 {
+  justify-content: center;
+  align-items: center;
+}
+
+#divResultado {
+  display: flex;
+  justify-content: center;
+}
+
+/*TODO: TABLA------------------------------------------------------------------------------ */
+
+table {
+  border: solid 1px rgb(0, 0, 0, 0.3);
+  color:  #011627;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+}
+tr { padding: 1rem;}
+td {padding: .2rem .5rem;}
+th {
+  padding-left: .8rem;
+  background: #F71735;
+  color: whitesmoke;
+}
+.trFinal{
+  background-color: #011627; 
+  font-weight: normal;
+  /* opacity: .6; */
+}
+.trBordeinferior { border-bottom: inset 1px rgb(0, 0, 0, 0.3);}
+.tdBordeDerecho {border-right: inset 1px rgb(0, 0, 0, 0.3);}
+
+.tdTextCenter {text-align: center;}
+.tdTextDerecha {text-align: right;}
+.tdTextIzquierda{text-align: left;}
+.tdTotalAPagar {font-weight: 700};
+
+
+.tablaTitulo1{
+font-size: 1.2rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.tablaTitulo2{
+  font-size: 1rem;
+  text-align: left;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  font-family: 'Roboto', sans-serif; 
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/*TODO: FIN TABLA------------------------- */
+
+/*! SECTION CONDICIONES GENERALES  ***********************************************************/
 .ind__sec3 {
   border: dashed 1px rgb(0, 0, 0, 0.4);
 }
@@ -377,3 +439,4 @@ input[type=checkbox] {
   margin: 4px 0;
   text-align: justify;
 }
+

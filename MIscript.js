@@ -227,8 +227,8 @@ REFcalcularBut.addEventListener("click", clickCalcular);
 let REFlimpiarBut = document.getElementById("limpiarBut");      //boton limpiar
 REFlimpiarBut.addEventListener("click", clickLimpiar);
 
-//* html: ROW [5] RESULTADO ----
-let REFresultadosFie = document.getElementById("resultadosFie"); //<Fieldset> (Nodo Padre)
+//* html: SECCION (0) RESULTADO ----
+let containerResult = document.getElementById("divResultado");
 
 //! ========================================================================================
 //! _________________________________DECLARACIÓN DE CLASES__________________________________
@@ -627,7 +627,7 @@ function calculoSimulacion() {
 //* 1.3. LLAMADAS A FUNCIONES REALACIONADAS CON EL DESPLIEGUE DE INFO EN PANTALLA-----------
 function despliegueDEInformacion() {
   conversionValores()
-  generarTabla()
+  mostrarResultados()
 }
 
 //TODO: ============== FASE 2.1 DESARROLLO DE FUNCIONES PARA PREPARAR DATOS ================
@@ -692,6 +692,7 @@ function inicializarVariables() {
   edad = (REFedadSel.options[REFedadSel.selectedIndex].text);
 
   //variables de sección créditos
+  CAE = 0;
   montoSolicitado = REFcreditoRan.value;
   montoSolicitado = montoSolicitado * 1;
   cuotas = REFcuotasRan.value;
@@ -699,6 +700,23 @@ function inicializarVariables() {
 
   //variables de sección seguos Opcionales
   listSeguros = REFsegurosChe; //array objects que contiene los checkbox
+
+  //Las siguientes variables se deben limpiar, para evitar trabajar con valores rezagados de cálculos anteriores 
+  //(los valores rezagados quedan cuando se realiza un nuevo cálculo sin haber recargado la pagina, o limpiado el formulario)
+  checkDesgravamen = false;
+  checkCesantia = false;
+  primaDesgravamen = 0;
+  primaCesantia = 0;
+  almacenDESeguros = [];
+  totalSeguros = 0;
+  almacenDEGastos = [];
+  totalGastos = 0;
+  montoBrutoCredito = 0;
+  cuotaMensualInt = 0;
+  totalPagoInt = 0;
+  CAE = 0;
+
+
 }
 
 //TODO: FASE 2.2 DESARROLLO DE FUNCIONES RELACIONADAS CON ALMACEN STORAGE===================
@@ -736,7 +754,7 @@ function obtenerTasaMaximaConvencional() {
 
 //*  CALCULOS DE PRIMA SEGUROS DESGRAVAMEN Y CESANTÍA --------------------------------------
 function obtenerSegurosOpcionales() {
-   let edadInt = edad * 1;
+  let edadInt = edad * 1;
   let riesgo = edadInt + (cuotas / 12);
 
   //Verificar si el usuario hizo check en Seguro de Desgravamen
@@ -821,16 +839,16 @@ function conversionValores() {
   idUser;
   nombre;
   celular;
-  email ;
-  edad ;
+  email;
+  edad;
 
   let encontrado0 = almacenDESeguros.find(elem => elem.id === "0")
-  if (encontrado0) { 
+  if (encontrado0) {
     tramoDesgravamen = encontrado0.tramo;
   }
-  
+
   let encontrado1 = almacenDESeguros.find(elem => elem.id === "1")
-  if (encontrado1) { 
+  if (encontrado1) {
     tramoCesantia = encontrado1.tramo;
   }
 
@@ -883,18 +901,160 @@ function conversionValores() {
   UFcuotaMensualStr = UFcuotaMensual.toFixed(1);
   UFcuotaMensualStr = new Intl.NumberFormat({ style: 'decimal' }).format(UFcuotaMensualStr);
 
-  UFprimaDesgravamenStr = UFprimaDesgravamen.toFixed(4);
+  UFprimaDesgravamenStr = UFprimaDesgravamen.toFixed(3);
   UFprimaDesgravamenStr = new Intl.NumberFormat({ style: 'decimal' }).format(UFprimaDesgravamenStr);
 
-  UFprimaCesantiaStr = UFprimaCesantia.toFixed(4);
+  UFprimaCesantiaStr = UFprimaCesantia.toFixed(3);
   UFprimaCesantiaStr = new Intl.NumberFormat({ style: 'decimal' }).format(UFprimaCesantiaStr);
 
-  UFtotalSegurosStr = UFtotalSeguros.toFixed(4);
+  UFtotalSegurosStr = UFtotalSeguros.toFixed(3);
   UFtotalSegurosStr = new Intl.NumberFormat({ style: 'decimal' }).format(UFtotalSegurosStr);
 }
 
-function generarTabla() {
-  console.log("estamos en la funcion generarTabla");
+function mostrarResultados() {
+  console.log("estamos en la funcion mostrarResultados");
+
+
+  containerResult.innerHTML = `
+
+<table>
+<tbody>
+    <!-- TITULO -->
+    <tr class="trBordeinferior">
+        <th colspan="12" class="tablaTitulo1">
+            Cotización de crédito de consumo
+        </th>
+    </tr>
+    <!-- CONJUNTO DE CELDAS NRO 1 -->
+    <tr>
+        <td colspan="3" class="tdTextDerecha">Nombre del Titular</td>
+        <td colspan="4" class="tdBordeDerecho">${nombre}</td> <!-- Nombre -->
+        <td colspan="5" rowspan="3" class="tdTextCenter">
+            <h2>CAE ${CAEStr}</h2> <!-- CAE -->
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" class="tdTextDerecha">Rut del Titular</td>
+        <td colspan="4" class="tdBordeDerecho">${idUser}</td> <!-- Rut -->
+    </tr>
+    <tr class="trBordeinferior">
+        <td colspan="3" class="tdTextDerecha">Fecha de Cotización</td>
+        <td colspan="4" class="tdBordeDerecho">${fechaActual}</td> <!-- Fecha -->
+    </tr>
+
+    <!-- CONJUNTO DE CELDAS NRO 2 -->
+    <tr class="trBordeinferior">
+        <th colspan="12" class="tablaTitulo2">I. Producto Principal</th>
+    </tr>
+
+    <tr>
+        <td colspan="3" class="tdBordeDerecho tdTextCenter">Tasa de Interés (%)</td>
+        <td colspan="3" class="tdBordeDerecho tdTextCenter">Plazo del Crédito <small>(Meses)</small>
+        </td>
+        <td colspan="3" rowspan="2" class="tdBordeDerecho tdTextCenter">Valor en CLP </td>
+        <td colspan="3" rowspan="2" class="tdTextCenter">Valor en UF</td>
+    </tr>
+
+    <tr class="trBordeinferior">
+        <td colspan="3" class="tdBordeDerecho tdTextCenter">${tasaCreditoStr}</td>
+        <!-- Tasa de Interés (%) -->
+        <td colspan="3" class="tdBordeDerecho tdTextCenter">${cuotas}</td>
+        <!-- Plazo del Crédito -->
+    </tr>
+
+    <tr class="trBordeinferior">
+        <td colspan="6" class="tdBordeDerecho">Monto Liquido del Crédito</td>
+        <td colspan="3" class="tdBordeDerecho tdTextCenter">${montoSolicitadoStr}</td>
+        <!-- monto liquido en CLP ($) -->
+        <td colspan="3" class="tdTextCenter">${UFmontoSolicitadoStr}</td>
+        <!-- monto liquido en UF -->
+    </tr>
+    <tr class="trBordeinferior">
+        <td colspan="6" class="tdBordeDerecho">Valor de la Cuota</td>
+        <td colspan="3" class="tdBordeDerecho tdTextCenter">${cuotaMensualStr}</td>
+        <!-- valor cuota en CLP ($) -->
+        <td colspan="3" class="tdTextCenter">${UFcuotaMensualStr}</td>
+        <!-- valor cuota en UF -->
+    </tr>
+    <tr class="trBordeinferior">
+        <td colspan="6" class="tdBordeDerecho">Monto Bruto del Crédito<br><small>(Monto Liquido del
+                Crédito + Seguros + Gastos)</small></td>
+        <td colspan="3" class="tdBordeDerecho tdTextCenter">${montoBrutoCreditoStr}</td>
+        <!-- monto Bruto crédito en CLP ($) -->
+        <td colspan="3" class="tdTextCenter">${UFmontoBrutoCreditoStr}</td>
+        <!-- monto Bruto crédito en UF -->
+    </tr>
+    <tr class="trBordeinferior">
+        <td colspan="6" class="tdBordeDerecho">Total a Pagar <br><small>(Valor Cuota * Cantidad de
+                Cuotas)</small></td>
+        <td colspan="3" class="tdBordeDerecho tdTextCenter tdTotalAPagar">${totalPagoStr}</td>
+        <!-- Total a Pagar en CLP ($) -->
+        <td colspan="3" class="tdTextCenter tdTotalAPagar">${UFtotalPagoStr}</td>
+        <!-- Total a Pagar en UF -->
+    </tr>
+
+
+    <!-- CONJUNTO DE CELDAS NRO 3 -->
+    <tr class="trBordeinferior">
+        <th colspan="12" class="tablaTitulo2">II. Servicios Contratados voluntariamente </th>
+    </tr>
+    <tr class="trBordeinferior">
+        <td colspan="6" class="tdBordeDerecho"></td>
+        <td colspan="3" class="tdBordeDerecho tdTextCenter">Valor en CLP </td>
+        <td colspan="3" class="tdTextCenter">Valor en UF</td>
+    </tr>
+    <tr class="trBordeinferior">
+        <td colspan="6" class="tdBordeDerecho"> Seguro de Desgravamen - ${tramoDesgravamen}</td>
+        <!-- tramo -->
+        <td colspan="3" class="tdBordeDerecho tdTextCenter">${primaDesgravamenStr}</td>
+        <!-- Seguro desgravamen en CLP ($) -->
+        <td colspan="3" class="tdTextCenter">${UFprimaDesgravamenStr}</td>
+        <!-- Seguro desgravamen en UF -->
+    </tr>
+    <tr class="trBordeinferior">
+        <td colspan="6" class="tdBordeDerecho"> Seguro de Cesantía - ${tramoCesantia}</td>
+        <!-- tramo -->
+        <td colspan="3" class="tdBordeDerecho tdTextCenter">${primaCesantiaStr}</td>
+        <!-- Seguro Cesantía en CLP ($) -->
+        <td colspan="3" class="tdTextCenter">${UFprimaCesantiaStr}</td>
+        <!-- Seguro Cesantía en UF  -->
+    </tr>
+    <tr class="trBordeinferior">
+        <td colspan="6" class="tdBordeDerecho"> TOTAL SEGUROS</td>
+        <td colspan="3" class="tdBordeDerecho tdTextCenter">${totalSegurosStr}</td>
+        <!-- Total Seguros en CLP ($) -->
+        <td colspan="3" class="tdTextCenter">${UFtotalSegurosStr}</td> <!-- Total Seguros en UF -->
+    </tr>
+
+    <!-- CONJUNTO DE CELDAS NRO 4 -->
+    <tr class="trBordeinferior">
+        <th colspan="12" class="tablaTitulo2">III. Gastos Propios del crédito </th>
+    </tr>
+    <tr class="trBordeinferior">
+        <td colspan="6">Impuestos</td>
+        <td colspan="3"></td>
+        <td colspan="3" class="tdTextCenter">${gastoImpuestoStr}</td> <!-- Impuestos en CLP ($) -->
+    </tr>
+    <tr class="trBordeinferior">
+        <td colspan="6">Notaría</td>
+        <td colspan="3"></td>
+        <td colspan="3" class="tdTextCenter">${gastoNotariaStr}</td> <!-- notaría en CLP ($) -->
+        </t>
+    <tr class="trBordeinferior">
+        <td colspan="6">TOTAL GASTOS</td>
+        <td colspan="3"></td>
+        <td colspan="3" class="tdTextCenter">${totalGastosStr}</td> <!-- Total Gastos en CLP ($) -->
+    </tr>
+    <tr class="trBordeinferior">
+        <th colspan="6" class="trFinal tdTextIzquierda">MONTO BRUTO DEL CRÉDITO</th>
+        <th colspan="3" class="trFinal"></th>
+        <th colspan="3" class="tdTextCenter trFinal">${montoBrutoCreditoStr}</th>
+        <!-- Monto Bruto del Crédito en CLP ($) -->
+    </tr>
+</tbody>
+</table>
+
+`;
 
 }
 
@@ -922,25 +1082,22 @@ function clickLimpiar() {
   for (let i = 0; i <= REFsegurosChe.length - 1; i++) {
     REFsegurosChe[i].checked = false;
   }
+
+  //Resetear variables a sus valores originales
+  checkDesgravamen = false;
+  checkCesantia = false;
+  primaDesgravamen = 0;
+  primaCesantia = 0;
+  almacenDESeguros = [];
+  totalSeguros = 0;
+  almacenDEGastos = [];
+  totalGastos = 0;
+  montoBrutoCredito = 0;
+  cuotaMensualInt = 0;
+  totalPagoInt = 0;
+  CAE = 0;
+  containerResult.innerHTML = ``;
 }
-
-//* _____________________________________________________________________________________
-//* BUTTON LIMPIAR: borrarParrafo() --> -------------------------------------------------
-//* BORRA EL RESULTADO DEL CALCULO DE SIMULACIÓN DESPLEGADO EN TIEMPO DE EJECUCIÓN ------
-//* =====================================================================================
-
-// function borrarParrafo() {
-//   //* padre resultadoFie, Hijo resultadoP
-//   let REFresultadosFie = document.getElementById("resultadosFie"); //* Nodo Padre
-//   let nodosHijos = REFresultadosFie.children;
-//   let NodoPadreLenght = nodosHijos.length;
-//   console.log(`El largo del fieldset es ${NodoPadreLenght}`);
-
-//   if (NodoPadreLenght > 0) {
-//     let REFresultadosP = document.getElementById("resultadosP");
-//     REFresultadosP.remove();
-//   }
-// }
 
 
 

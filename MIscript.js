@@ -16,25 +16,6 @@
 //! ////////////////////////////////////////////////////////////////////////////////////////
 
 let nuevoUser; //* variable con la que se crea un usuario nuevo.
-<<<<<<< HEAD
-
-//TODO: VARIABLES GLOBALES: STORAGE INICIAL --------------------------------------------
-//TODO: *********************************************************************************
-
-function loadUsuarios() { //* 
-
-  if (localStorage.length == 0) {
-
-    //* Carga inicial de usuarios, se usará en el caso que el storage se encuentre vacío al iniciar la página
-    let usuariosCargaInicial = [
-      { id: "1111-1", nombre: "Usuario 1", celular: "+569-11111111", email: "usuario1@dominio.com" },
-      { id: "2222-2", nombre: "Usuario 2", celular: "+569-22222222", email: "usuario2@dominio.com" },
-      { id: "3333-3", nombre: "Usuario 3", celular: "+569-33333333", email: "usuario3@dominio.com" },
-    ]
-    localStorage.setItem('usuarios', JSON.stringify(usuariosCargaInicial));
-  }
-  usuarios = JSON.parse(localStorage.getItem('usuarios'));
-=======
 let usuarios;  //* array que contiene a todos los usuarios
 
 //* SE CONVIERTE FECHA A INTEGER PARA PODER COMPARAR CON FECHAS OBTENIDAS EN FETCH(URL2)----
@@ -55,7 +36,6 @@ function stringTONumber(fechaString) {
   }
   let nuevoInteger = nuevaCadena * 1;
   return nuevoInteger;
->>>>>>> Rama1
 }
 
 //* DATOS PERSONALES -----------------------------------------------------------------------
@@ -215,11 +195,7 @@ fetch(URL2)
 //! _______________________________REFERENCIAS HTMLObjects__________________________________
 //! ////////////////////////////////////////////////////////////////////////////////////////
 
-<<<<<<< HEAD
-let REFtextDP = document.querySelectorAll(".textDP") //* Array que contiene los object text (cajas de texto de Datos Personales)
-=======
 let listTextBox = document.querySelectorAll('input.text');    // array que contiene todos los input text 
->>>>>>> Rama1
 
 //* html: ROW [1] DATOS PERSONALES ---------------------------------------------------------
 let REFrutTex = document.getElementById("rutTex");
@@ -483,18 +459,10 @@ function changeValidarEntrada1(entrada) {
 function montoLimite(entrada) {
   let resto = entrada % 100000;
 
-<<<<<<< HEAD
-  if (entrada < 500000 || entrada > 60000000) { //* valor ingresado fuera de límites permitidos
-
-    Swal.fire({
-      title: 'Valor fuera de rango',
-      text: 'El monto mínimo ingresado debe ser 500.000, y el monto máximo 60.000.000',
-=======
   if (entrada < 500000 || entrada > 60000000) { // valor ingresado fuera de límites permitidos
     Swal.fire({
       title: 'Valor fuera de rango',
       text: 'Se permiten montos entre 500.000, y 60.000.000',
->>>>>>> Rama1
       //icon: 'warning',
       confirmButtonText: 'Ok',
       width: 500,
@@ -502,42 +470,6 @@ function montoLimite(entrada) {
       color: '#ffffff',
       background: '#22223b',
       position: 'top'
-<<<<<<< HEAD
-    })
-
-
-    REFcreditoTex.value = "";
-
-  } else if (resto >= 50000) {
-
-    Swal.fire({
-      title: 'Solo se permiten múltiplos de 100.000',
-      text: 'El valor ingresado será aproximado al siguiente multiplo de 100.000',
-      // icon: 'warning',
-      //icon: 'warning',
-      confirmButtonText: 'Ok',
-      width: 600,
-      //padding: 1,
-      color: '#ffffff',
-      background: '#22223b',
-      position: 'top'
-    })
-    entrada = (entrada - resto) + 100000;
-    asignarConvertirMonto(entrada);
-
-  } else if (resto > 0 && resto < 50000) {
-    Swal.fire({
-      title: 'Solo se permiten múltiplos de 100.000',
-      text: 'El valor ingresado será aproximado al siguente multiplo de 100.000',
-      //icon: 'warning',
-      confirmButtonText: 'Ok',
-      width: 600,
-      //padding: 1,
-      color: '#ffffff',
-      background: '#22223b',
-      position: 'top'
-=======
->>>>>>> Rama1
     })
     REFcreditoTex.value = "";
   } else
@@ -627,26 +559,6 @@ function keyupValidarTeclaTex2() {
 function changeValidarEntrada2(entrada) {
   entrada = REFcuotasTex.value;
   let resto = entrada % 2;
-<<<<<<< HEAD
-
-  if (isNaN(entrada)) {  //*  true cuando el valor es NaN (NaN ="No númerico")
-    REFcuotasTex.value = "";
-
-  } else if (entrada < 6 || entrada > 60) { //* valor ingresado fuera de límites permitidos
-    Swal.fire({
-      title: 'Valor fuera de rango',
-      text: 'El mínimo de Cuotas es 6 y el máximo 60',
-      // icon: 'warning',
-      //icon: 'warning',
-      confirmButtonText: 'Ok',
-      width: 500,
-      //padding: 1,
-      color: '#ffffff',
-      background: '#22223b',
-      position: 'top'
-    })
-=======
->>>>>>> Rama1
 
   if (isNaN(entrada)) {                      // true cuando el valor es NaN (NaN ="No númerico")
     REFcuotasTex.value = "";
@@ -694,33 +606,12 @@ function clickCalcular(event) {
   }
 }
 
-<<<<<<< HEAD
-//TODO: ------------------------------ BUTTON CALCULAR ----------------------------------
-//TODO: *********************************************************************************
-//* _____________________________________________________________________________________
-//*  BUTTON CALCULAR: STORAGE USUARIO Y CÁLCULOS DE LA SIMULACIÓN DE CRÉDITO ------------
-//*  ====================================================================================
-
-function clickCalcular(event) {
-  event.preventDefault(); //*previene el comportamiento default del submit
-
-  //* GESTION USUARIO STORAGE
-  if (userValidarVacios() === true) {                //* validación de campos vacíos
-    if (userVerificarExistencia() != true) { //* si no hay campos vacíos se chequea que el usuario exista 
-      if (crearUser()) {                    //* si el usuario no existe entonces se crea
-        almacenarUser();                  //* si el usuario ha sido creado entonces se almacena en el storage
-      }
-    }
-  } else {
-    return false; //* Si existen campos vacíos salir del programa
-=======
 //* 1.1. LLAMADAS A FUNCIONES REALACIONADAS CON STORAGE USUARIO ---------------------------
 function storageUsuario() {
   if (userVerificarExistencia() != true) {  // se verifica que el usuario a crear no exista
     if (crearUser()) {                      // si el usuario no existe, entonces se crea
       nuevoUser.almacenarUser();            // se almacena en el storage usuamdo el constructor d ela clase usuario
     }
->>>>>>> Rama1
   }
 }
 
@@ -741,40 +632,6 @@ function despliegueDEInformacion() {
 
 //TODO: ============== FASE 2.1 DESARROLLO DE FUNCIONES PARA PREPARAR DATOS ================
 
-<<<<<<< HEAD
-  //let REFtextDP = document.querySelector(".textDP") // Array que contiene los elementos text (Datos Personales)
-  let mensaje = "";
-  let contador = 0;
-  let textBoxes = ["Rut, ", "Nombre, ", "Celular, ", "Email, "]; //*array para construir mensaje de campos vacíos
-
-  for (let x = 0; x <= REFtextDP.length-1; x++) { //* recorrido de cuadros de texto (sección datos personales)
-    if (REFtextDP[x].value === "") { //* se pregunta si cuadro de texto está vacío
-      mensaje += textBoxes[x];       //* se construye mensaje concatenando cada campo vacío (para mostrar en sweet alert)
-      contador++                     //* se incrementa el contador, (su valor inside en las siguientes instrucciones)
-      if (contador === 1) {
-        REFtextDP[x].focus();
-      }
-    }
-  }
-
-  //* retorno true/false hacia el hacia el exterior y despliegue de pantalla al usuario
-  if (contador === 0) {
-    return true;
-  } else {
-    Swal.fire({
-      title: 'No se permiten campos vacíos',
-      text: `Faltan los siguientes datos: ${mensaje} ¡Por favor complete estos campos!`,
-      //icon: 'warning',
-      confirmButtonText: 'Ok',
-      width: 500,
-      //padding: 1,
-      color: '#ffffff',
-      background: '#22223b',
-      position: 'top'
-    })
-    return false;
-  }
-=======
 //* VALIDAR QUE LOS DATOS ESTÉN LLENOS (IMPRECINDIBLE ANTES DE INICIALIZAR VARIABLES)-------
 function userValidarVacios() {              // no puede haber campos vacíos
   let mensaje = "";
@@ -823,7 +680,6 @@ function userValidarVacios() {              // no puede haber campos vacíos
   } else {
     return true;
   }
->>>>>>> Rama1
 }
 
 //* INICIALIZAR VARIABLES PROVENIENTES DEL DOM ---------------------------------------------
@@ -1073,20 +929,6 @@ function clickLimpiar() {
 //* BORRA EL RESULTADO DEL CALCULO DE SIMULACIÓN DESPLEGADO EN TIEMPO DE EJECUCIÓN ------
 //* =====================================================================================
 
-<<<<<<< HEAD
-function borrarParrafo() {
-  //* padre resultadoFie, Hijo resultadoP
-  let REFresultadosFie = document.getElementById("resultadosFie"); //* Nodo Padre
-  let nodosHijos = REFresultadosFie.children;
-  let NodoPadreLenght = nodosHijos.length;
-  console.log(`El largo del fieldset es ${NodoPadreLenght}`);
-
-  if (NodoPadreLenght > 0) {
-    let REFresultadosP = document.getElementById("resultadosP");
-    REFresultadosP.remove();
-  }
-}
-=======
 // function borrarParrafo() {
 //   //* padre resultadoFie, Hijo resultadoP
 //   let REFresultadosFie = document.getElementById("resultadosFie"); //* Nodo Padre
@@ -1103,4 +945,3 @@ function borrarParrafo() {
 
 
 
->>>>>>> Rama1

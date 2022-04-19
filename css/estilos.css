@@ -1,0 +1,381 @@
+/*  font-family: 'Montserrat', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* font-family: 'Poppins', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+/* font-family: 'Roboto', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,500;1,700&display=swap');
+
+
+
+/*! RESETEO CSS*/
+* {
+  margin: 0px;
+  padding: 0px;  
+  list-style: none; /* Quitar viñetas de las listas*/
+  text-decoration: none; /* Quitar subrayado de los enlaces*/
+  /* border: none;*/
+  outline: none;
+  box-sizing: border-box; /*permite incluir el relleno y el borde en el ancho 
+                             y alto total de un elemento*/
+}
+
+/*!ELEMENTOS GENERALES ****************************************************************/
+
+.hr1 {
+  /*todo: height de hr no se puede modificar con css pero sí directamente como atributo html*/
+  /*todo: opacity de hr por defecto es muy transparente, pero se puede modificar con css */
+
+  margin:0; 
+  height:8px; 
+  width:100%; 
+  border-width:0; 
+  background-color: #95885B; 
+  opacity: .999;
+}
+
+p{
+  margin-bottom: 0rem;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+  text-decoration: none;  
+  color: #201e1f;   
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin: 0;
+}
+
+.h1{
+  font-size: 2rem;
+  letter-spacing: 8px;
+ 
+}
+
+.h2{
+  font-size: 1.4rem;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  opacity: 70%;
+}
+
+.h3 {
+  font-size: 1.1rem;
+  font-family: 'Roboto', sans-serif; 
+  letter-spacing: 1px;
+  font-weight: 700;
+  opacity: 70%;
+  margin: 0.5rem 0;
+}
+
+/*! FORMULARIO ****************************************************************/
+
+.label{
+  font-size: .9rem;
+  font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+  color: rgb(0, 0, 0, 0.6);
+  text-align: center;
+  height: 1.5rem;
+}
+
+input[type=checkbox] {
+  vertical-align: middle;
+  position: relative;
+  top: .16rem;
+}
+
+.text, .select{
+  font-size: 0.8em;
+  font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+  color: rgb(0, 0, 0, 0.6);
+  padding-left: 10px;
+  height: 2.3rem;
+  border: solid 1px rgb(0, 0, 0, 0.2);
+  border-radius: 3px;
+  box-sizing: border-box;
+    -khtml-box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.20);
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.20);  
+  }
+  
+  .textDP, .select{
+  flex-grow: 1;       /* Proporción de expansión de los flex-item (1 por defecto) */
+  flex-shrink: 1;     /* Proporción de reducción de los flex-item cuando se reduzca el tamaño de pantalla */
+  flex-basis: 200px;  /* valor base desde el cual se calcula la expansión y reducción de tamaños cajas */
+}
+
+
+.text:focus {
+  background   : rgba(252, 160, 4, 0.40);
+  border-radius: 3px;
+  outline : none;
+}
+
+.range{
+  padding: 0;
+  cursor:pointer; cursor: hand;
+
+  -webkit-appearance: none;
+  background: #00A1DF;
+  height: 1px;
+  margin-top: 10px;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.button {
+  box-sizing: border-box;
+  border-radius: 30px;
+  border: 1px solid rgb(200, 200, 200);
+  width: 8rem;
+  height: 2.3rem;
+  width: 12rem;
+  padding: 5px 2px;
+  background: #011627;
+  color: #FFF;
+  cursor: wait;
+  font: 0.9em "typewriter", sans-serif;
+  align-self: center;
+}
+
+.button:after {
+  content: " >>>";
+}
+
+.button:hover {
+  background: #F71735;
+  animation: escalar 1s ease 0.3s 1 normal forwards;
+}
+
+@keyframes escalar{
+  0% { transform: scale(0.5); }
+  100% { transform: scale(1); }
+}
+
+/*!ELEMENTOS PERSONALIZADOS ****************************************************/
+
+
+.ind__hea{
+  background: #F71735;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+  margin: 0; /*márgenes laterales (default BS), añaden scroll horizontal */
+}
+
+.ind__hea__row1__col1__h{
+  color: #F4F7F5;
+}
+
+.ind__mai{
+  justify-content: center;
+  gap: 2rem;
+  margin: 1.5rem 0; /*márgenes laterales (default BS), añaden scroll horizontal */
+  /*border: solid 1px rgb(150, 150, 150); */
+}
+
+
+.ind__sec1{
+  background-color: #F4F7F5;
+  padding: 1rem 0;
+  padding: 2rem;
+  box-shadow: 3px 3px 10px 5px rgb(0, 0, 0, 0.2);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.ind__sec1__divh{
+  padding: .3rem;
+  width: 100%;
+  overflow:hidden;
+}
+
+.ind__sec1__divh__h{
+  animation: slidein 3s ease 0.05s 1 alternate forwards;
+}
+
+@keyframes slidein {
+  0% {
+      margin-left:100%; /*margen del elemento */
+      width:300%       /*ancho del elemento*/
+     }
+
+   100% {
+      margin-left:0%; /*margen del elemento */
+      width: 100%;
+      }
+
+}
+
+/*TODO: ROW: ESTILOS COMUNES --------------------------------------- */
+
+.ind__sec1__divCon__for{
+    display: flex;
+    flex-direction: row;
+    column-gap: 3rem;
+    row-gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.ind__sec1__for__divRow{
+  background-color: white;
+  border-radius: 20px;
+  border: solid 1px rgb(0, 0, 0, 0.2);
+  padding: 1rem;
+  flex-grow: 1;       /* Proporción de expansión de los flex-item (1 por defecto) */
+  flex-shrink: 1;     /* Proporción de reducción de los flex-item cuando se reduzca el tamaño de pantalla */
+  flex-basis: 200px;  /* valor base desde el cual se calcula la expansión y reducción de tamaños cajas */
+}
+
+.--divRow--botonera {
+  border: none;
+  background-color: #F4F7F5;
+  /* background-color: tomato; */
+  padding: 0rem 2rem ;
+  gap: 0;
+}
+
+
+
+.ind__sec1__for__divRow__fie{
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.--fie--botonera{
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 0;
+}
+
+
+.ind__sec1__for__divRow__fie__divContent{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.--divContent--Credito{  /* modificador de la clase "ind__sec1__for__divRow__fie__divContent" */
+  gap: 1rem;
+}
+
+.--divContent--Seguros{
+  gap: 1.5rem;
+}
+
+.__divContent__divElementForm{   /* hijo de la clase "ind__sec1__for__divRow__fie__divContent" */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.--divElementForm--Seguros{  /* modificador de la clase "__divContent__divElementForm" */
+  gap: .5rem;
+  box-shadow: 0 1px 10px 0 rgb(0 0 0 / 20%);
+  border-radius: 4px;
+  /* flex-wrap: nowrap; */
+  width: 100%;
+  padding: 6px;
+}
+
+
+
+/*TODO: ROW [2] DATOS DE CRÉDITO ---------------------------------------------------- */
+
+
+.__divContent__divElementForm__divSpa { /*formulario > div > fieldset > div */
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content:space-between;
+}
+
+.__divContent__divElementForm__divSpa__spa { /* formulario > div > fieldset > div > span */
+  font-size: 12px;
+  color: #A1A1A1;
+}
+
+/*TODO: ROW [3] SEGUROS OPCIONALES ---------------------------------------------------- */
+
+.__divContent__divElementForm__p{  
+  font-size: 0.85rem;
+  font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+  color: rgb(0, 0, 0, 0.6);
+}
+
+.__divContent__divElementForm__p__lab{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+
+/*TODO: ROW [4] BOTONERAS DE CÁLCULO ---------------------------------------------------- */
+
+
+.ind__sec1__for__divRowBot__fie{
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+}
+
+
+/*TODO: ROW [5] RESULTADO  ---------------------------------------------------- */
+.ind__sec1__for__divRowRes{
+  flex-direction: row;
+  border-radius: 20px;
+  /* border: solid 1px rgb(0, 0, 0, 0.2);*/
+  padding: 0 2rem;
+  margin-top: 1.5rem;
+}
+
+/*
+.innerHTML__P {
+  width: 500px;
+}*/
+
+/*! SEPARADOR HORIZONTAL  ****************************************************/
+.ind__sec2{
+  padding: 0;
+}
+
+/*! CONDICIONES GENERALES  ****************************************************/
+.ind__sec3 {
+  border: dashed 1px rgb(0, 0, 0, 0.4);
+}
+  
+.ind__sec3__art {
+  font-size: 11px;
+  margin-bottom: 20px;
+  margin: 20px;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.ind__sec3__art__p {
+  margin: 4px 0;
+  text-align: justify;
+}

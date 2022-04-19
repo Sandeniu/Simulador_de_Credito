@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="Es">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/estilos.css">
+    <title>0314_Desafio-eventos</title>
+</head>
+
+<body>
+    <div class="container-fluid p-0">
+
+        <!--!----------HEADER --------------------------------------------------------->
+        <header class="row ind__hea">
+            <div class="col ind__hea__row1">
+                <div class="ind__hea__row1__col1">
+                    <h1 class="h1 ind__hea__row1__col1__h "> SIMULADOR DE CREDITO </h1>
+                </div>
+            </div>
+        </header>
+        <hr class="hr1" style="height:4px;">
+        <!-- <hr style="margin:0; height:4px; width:100%; border-width:0; background-color: #003049; opacity: .6;"> -->
+
+        <!--!----------NAV --------------------------------------------------------->
+        <nav class="row"></nav>
+
+        <!--!----------MAIN --------------------------------------------------------->
+        <main class="row ind__mai">
+
+
+            <!--TODO---------------SECCION 1 ----------------------------------------------->
+            <section class="col-lg-8 ind__sec1">
+                <div class="ind__sec1__divh">
+                    <h2 class="ind__sec1__divh__h h2" id="bienvenidoUsuarioH2">Crédito de Consumo</h2>
+                </div>
+                <form action="" class="container-md ind__sec1__divCon__for">
+
+                    <!--* ROW [1] DATOS PERSONALES --------------------------------------------------------->
+
+                    <div class="row ind__sec1__for__divRow">
+
+                        <fieldset class="col  ind__sec1__for__divRow__fie">
+                            <h3 class="h3 ind__sec1__for__divRow__fie__h"> Datos Personales </h3>
+
+                            <div class="ind__sec1__for__divRow__fie__divContent">
+
+                                <input type="text" required id="rutTex" placeholder="Rut/CI/DNI" class="text textDP"
+                                    maxlength="20" autocomplete="off" title="Ingrese su documento de identidad">
+
+                                <input type="text" required id="userTex" placeholder="Ingrese su Nombre"
+                                    class="text textDP" maxlength="60" autocomplete="off"
+                                    title="Ingrese su Nombre y apellidos">
+
+                                <input type="tel" required id="celuTel" placeholder="Celular" class="text textDP"
+                                    maxlength="9" autocomplete="off" title="Ingrese su celular (solo los 9 dígitos)">
+
+                                <input type="email" required id="emailEma" placeholder="Ingrese su email"
+                                    class="text textDP" maxlength="30" autocomplete="off"
+                                    title="Ingrese su correo electrónico">
+
+                                <select id="edadSel" class="select" name="edad">
+                                    <option class="optionSelect" value=0>Indique su edad</option>
+
+                                </select>
+                            </div>
+
+                        </fieldset>
+                    </div>
+
+
+                    <!--* ROW [2] DATOS DEL CRÉDITO ------------------------------------------------------------>
+                    <div class="row ind__sec1__for__divRow">
+
+                        <!-- FIELSET   -->
+                        <fieldset class="col ind__sec1__for__divRow__fie">
+
+                            <h3 class="h3 ind__sec1__for__divRow__fie__h"> Datos Crediticios</h3>
+
+                            <!-- DIV CONTENEDOR DE DIV MONTO Y DIV CREDITO-->
+                            <div class="ind__sec1__for__divRow__fie__divContent ***** --divContent--Credito">
+
+                                <!-- DIV MONTO----------------->
+                                <div class="__divContent__divElementForm">
+                                    <label class="label" for="">Monto Solicitado</label>
+                                    <input type="text" required id="creditoTex" placeholder="$500.000" class="text"
+                                        maxlength="13" autocomplete="off" title="
+                                        Ingrese solo números, sin puntos ni caracteres
+                                        En Múltiplos de 100.000
+                                        Monto mínimo 500.000 
+                                        Monto máximo 60.000.000">
+                                    <input type="range" class="range" id="creditoRan" min="500000" max="60000000"
+                                        value="500000" step="100000">
+                                    <div class="__divContent__divElementForm__divSpa">
+                                        <span class="__divContent__divElementForm__divSpa__spa">$500.000</span>
+                                        <span class="__divContent__divElementForm__divSpa__spa">$60.000.000</span>
+                                    </div>
+                                </div>
+
+                                <!-- DIV CUOTAS------------------->
+                                <div class="__divContent__divElementForm">
+                                    <!-- cuota  -->
+                                    <label class="label" for="">Número de Cuotas</label>
+                                    <!-- readonly="true" para dejar cuadro de texto inactivo -->
+                                    <input type="text" required id="cuotasTex" placeholder="6" class="text"
+                                        maxlength="2" autocomplete="off" pattern="[0-9]{2}"
+                                        title="Se permiten números pares, desde 6 hasta 60">
+                                    <input type="range" class="range" id="cuotasRan" min="6" max="60" value="6"
+                                        step="2">
+                                    <div class="__divContent__divElementForm__divSpa">
+                                        <span class="__divContent__divElementForm__divSpa__spa">6
+                                            cuotas</span>
+                                        <span class="__divContent__divElementForm__divSpa__spa">60
+                                            cuotas</span>
+                                    </div>
+                                </div>
+                            </div> <!-- FIN ---DIV CONTENEDOR DE DIV MONTO Y DIV CREDITO-->
+                        </fieldset>
+                    </div>
+
+                    <!--* ROW [3] SEGUROS COMPLEMENTARIOS ---------------------------------------------->
+                    <div class="row ind__sec1__for__divRow">
+
+                        <!-- FIELSET   -->
+                        <fieldset class="col ind__sec1__for__divRow__fie">
+                            <h3 class="h3  ind__sec1__for__divRow__fie__h"> Seguros Opcionales</h3>
+
+                            <!-- DIV CONTENEDOR DE DIV SEGUROS-->
+                            <div class="ind__sec1__for__divRow__fie__divContent ***** --divContent--Seguros">
+
+                                <div class="__divContent__divElementForm ***** --divElementForm--Seguros">
+                                    <p class="__divContent__divElementForm__p">
+                                        <label class="__divContent__divElementForm__p__lab">
+                                            <input type="checkbox" id="desgravamenChe" class="segurosChe" value="0">
+                                            Seguro Desgravamen
+                                        </label>
+                                    </p>
+                                </div>
+
+                                <div class="__divContent__divElementForm ***** --divElementForm--Seguros"">
+                                    <p class=" __divContent__divElementForm__p">
+                                    <label class="__divContent__divElementForm__p__lab">
+                                        <input type="checkbox" id="cesantiaChe" class="segurosChe" value="1">
+                                        Seguro de Cesantía
+                                    </label>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <!--** ROW [4] BOTONERAS------------------------------------------------------------->
+                    <div class="row ind__sec1__for__divRow ***** --divRow--botonera">
+                        <!-- botoneras -->
+                        <fieldset class="col ind__sec1__for__divRow__fie ***** --fie--botonera">
+                            <!-- div de botoneras -->
+                            <a href="#Resultado">
+                                <input type="submit" id="calcularBut" class="button" value="Calcular">
+                            </a>
+                            <input type="button" id="limpiarBut" class="button" value="Limpiar">
+                        </fieldset>
+
+                    </div>
+
+
+                </form>
+            </section>
+
+            <!--TODO---------------SECCION 2 ----------------------------------------------->
+            <section class="col-lg-8 ind__sec2">
+                <hr style="margin:0; height:2px; width:100%; border-width:0; background-color: #003049; opacity: .6;">
+            </section>
+
+            <!--TODO---------------SECCION 0 ----------------------------------------------->
+            <section class="col-lg-8 ind__sec0">
+                <div class="ind__sec0" id="ind__sec0__Resultado">
+
+                </div>
+            </section>
+
+            <!-- <div class="row ind__sec1__for__divRow"> -->
+            <!-- div donde se imprime respuesta  -->
+            <!-- Resultado -->
+            <!-- clase que corre en js y se debe cambiar: ind__sec1__divCon__for__div3__fie1 -->
+            <!-- <fieldset id="resultadosFie" class="col ind__sec1__for__divRowRes__fie ">
+
+                </fieldset>
+            </div> -->
+
+            <!--TODO---------------SECCION 3 ----------------------------------------------->
+            <section class="col-lg-8 ind__sec3">
+                <article class="ind__sec3__art">
+                    <p class="ind__sec3__art__p">
+                        <span class="col ind__sec3__art__p__spa">
+                            En esta simulación se incluyen gastos operacionales y un seguros opcionales, cuyas tasas son
+                            referenciales tomados de estudio de mercado. Esta simulación es referencial y no vinculante.
+                            El otorgamiento de un crédito así como
+                            cualquier producto financiero está sujeto a la aprobación comercial previa por parte de la
+                            institución facilitadora, considerando sus políticas internas de créditos vigentes al
+                            momento de la solicitud.
+                        </span>
+                    <p class="ind__sec3__art__p">
+                        <span class="col ind__sec3__art__p__spa">
+                            Es importante señalar al consumidor que por políticas generales relacionadas con otorgaiento
+                            de créditos, la cuota mensual del crédito no debe superar el 25% de los ingresos mensuales
+                            del solicitante,
+                            pues se estima que el resto de los ingresos son destinados al consumo de otros bienes y
+                            servicios, de primera necesidad y posibles contingencias.
+
+                            Es importante que el consumidor tenga clara esta relación, ya que muchas veces los ingresos
+                            mensuales del solicitante no alcanzan a cubrir la cuota del monto que requiere.
+
+                        </span>
+                    </p>
+                </article>
+            </section>
+        </main>
+
+        <!--!----------FOOTER --------------------------------------------------------->
+        <footer class="row ind__foo">
+
+        </footer>
+    </div>
+    <!-- Inserción de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+        </script>
+
+    <!-- swett Alert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11">
+
+    </script>
+
+    <!-- mi archivo *.js se incorpora justo antes del cierre del body -->
+    <script type="module" src="MIscript.js"></script>
+</body>
+
+</html>

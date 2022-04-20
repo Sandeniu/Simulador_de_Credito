@@ -203,6 +203,8 @@ input[type=checkbox] {
 
 .ind__sec1__divh__h{
   animation: slidein 3s ease 0.05s 1 alternate forwards;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 1px;
 }
 
 @keyframes slidein {
@@ -397,10 +399,12 @@ th {
 
 
 .tablaTitulo1{
-font-size: 1.2rem;
+  font-size: 1.2rem;
   text-align: center;
+  padding: .3rem .0rem
   text-transform: uppercase;
   letter-spacing: 1px;
+  font-family: 'Montserrat', sans-serif; 
   font-weight: 600;
   text-decoration: none;
 }

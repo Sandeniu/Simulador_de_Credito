@@ -378,7 +378,7 @@ function changeChequearID() {
         break;
       }
     }
-    let mensajebienvenida = `Bienvenido/a  ${encontrado.nombre}`;
+    let mensajebienvenida = `Hola  ${encontrado.nombre}`;
     document.getElementById('bienvenidoUsuarioH2').textContent = mensajebienvenida;
   }
 }
@@ -922,7 +922,7 @@ function mostrarResultados() {
     <!-- TITULO -->
     <tr class="trBordeinferior">
         <th colspan="12" class="tablaTitulo1">
-            Cotización de crédito de consumo
+            COTIZACIÓN DE CRÉDITO DE CONSUMO
         </th>
     </tr>
     <!-- CONJUNTO DE CELDAS NRO 1 -->

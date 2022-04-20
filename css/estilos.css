@@ -401,7 +401,7 @@ th {
 .tablaTitulo1{
   font-size: 1.2rem;
   text-align: center;
-  padding: .3rem .0rem
+  padding: .3rem .0rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-family: 'Montserrat', sans-serif; 
